@@ -7,7 +7,7 @@ The microbenchmark involves concurrent read/write access to adjacent & different
 that are K byte aligned for K=64,128,256,512.
 
 
-Example output:
+Example output on an AWS instance 1-socket 8 physical cores Intel(R) Xeon(R) CPU E5-2666 v3 @ 2.90GHz:
 
 Running on nworkers: 8
 TEST avg for alignment 64: 0.223000
