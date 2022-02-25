@@ -47,7 +47,7 @@ unsigned long long todval (struct timeval *tp) {
 
 int main() {
   int max_workers = N_CILK_WORKERS;
-  printf("Running on nworkers: %d\n", max_workers);
+  printf("Running on %d logically parallel tasks using %d actual worker threads\n", max_workers, __cilkrts_get_nworkers());
   char* bytes = (char*)aligned_alloc(4096, 4096*max_workers);
   for (int repeat = 0; repeat < 2; repeat++) {
   for (int offset = 1; offset < 16; offset *= 2) {

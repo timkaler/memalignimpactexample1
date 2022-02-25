@@ -3,14 +3,12 @@
 all: test_memory_perf
 
 
-test_memory_perf:
-	clang++ -O3 test_memory_perf.cpp -fopencilk -o test_memory_perf
+test_memory_perf: test_memory_perf.cpp
+	clang++ -O3 -DN_CILK_WORKERS=8 test_memory_perf.cpp -fopencilk -o test_memory_perf
 
+#test_memory_perf_serial:
+#	clang++ -O3 -DN_CILK_WORKERS=1 test_memory_perf.cpp -fopencilk -o test_memory_perf_serial
 
 clean:
-	./setup.sh make -f Makefile2 clean
-	./setup.sh make -f Makefile2_wl clean
-	./setup.sh make -f Makefile2_hybrid clean
-	./setup.sh make -f Makefile2_PLOCKS clean
-	./setup.sh make -f Makefile2_serial clean
-	rm -rf build build_wl build_hybrid build_serial build_plocks
+	touch test_memory_perf test_memory_perf_serial
+	-rm test_memory_perf test_memory_perf_serial
