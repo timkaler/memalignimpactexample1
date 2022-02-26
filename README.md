@@ -1,10 +1,14 @@
 
 
 This microbenchmark illustrates how "false sharing" type performance overheads exist for
-memory accesses that are on nearby, but not the same, cache line.
+memory accesses that are on nearby, but not the same, cache line when performing certain memory access patterns.
 
-The microbenchmark involves concurrent read/write access to adjacent & different blocks of K bytes of memory
-that are K byte aligned for K=64,128,256,512.
+The benchmark is based on the hypothesis that hardware prefetching of cache lines based on the access pattern of a thread
+can cause contention.
+
+As such, the microbenchmark involves concurrent read/write (strided) access to adjacent & different blocks of 512 bytes of memory
+that are K byte aligned for K=64,128,256,512. The idea is that the access pattern will cause cache lines beyond the 512 block of memory to be prefetched
+and these prefetched cachelines will overlap with the memory concurrently being read/write by other threads.
 
 
 Example output on an AWS instance 1-socket 8 physical cores Intel(R) Xeon(R) CPU E5-2666 v3 @ 2.90GHz:
