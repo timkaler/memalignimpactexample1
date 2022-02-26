@@ -6,8 +6,8 @@ memory accesses that are on nearby, but not the same, cache line when performing
 The benchmark is based on the hypothesis that hardware prefetching of cache lines based on the access pattern of a thread
 can cause contention.
 
-As such, the microbenchmark involves concurrent read/write (strided) access to adjacent & different blocks of 512 bytes of memory
-that are K byte aligned for K=64,128,256,512. The idea is that the access pattern will cause cache lines beyond the 512 block of memory to be prefetched
+As such, the microbenchmark involves concurrent read/write (strided) access to different blocks of 512 bytes of memory
+that have K bytes of padding between them for K=64,128,256,512. The idea is that the access pattern will cause cache lines beyond the 512 block of memory to be prefetched
 and these prefetched cachelines will overlap with the memory concurrently being read/write by other threads.
 
 
